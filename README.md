@@ -14,3 +14,12 @@ B) Efforts needs to be repeatable, minimize future struggles, and enable further
 C) Whatever solution is devised needs to work during "apply" time.  For example, a ML-based model requires saving after training, and reloading when it's applying.
 
 Hence, try to wrap up your solution such that it can effortlessly work on other data resembling the input csvs.  Also, please "zip" or "tar" your solution up such that it can make it past the email filters :)
+
+
+# Kahlil Wehmeyer
+
+### Ideas
+K-means clustering answers question 2
+K-modes could be used to answer question 1 and 3.
+
+Let's start with a simple K-means using # of visits and # of icd10_codes

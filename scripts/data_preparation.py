@@ -11,6 +11,13 @@ patients = pd.read_csv("data/patients.csv")
 pe = patients.merge(encounters, on = "encounter_id", how="left")
 
 # %% Writing prepared data to disk
-pe.to_csv("data/pe.csv")
+pe.to_csv("data/pe.csv", index= False)
 
+# %%
+encounters.head()
+# %%
+# %%
+pd.get_dummies(pe.idc10_code)
+# %%
+pe
 # %%
