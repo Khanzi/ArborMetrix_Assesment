@@ -3,6 +3,8 @@ from sys import argv
 from sklearn.cluster import KMeans
 import seaborn as sns; sns.set()
 import data_prep as dp
+import pickle as pk
+from datetime import date, datetime
 import os, sys
 
 
@@ -49,12 +51,21 @@ def eval_k(data, kmax = KMAX):
 
     return(inertia)
 
-def elbow_plot(inertia, kmax = KMAX):
-    sns.lineplot(y = inertia, x = range(1, kmax+1))
-    
-# %%
-i = eval_k(patient_data)
-elbow_plot(i)
+#### FOR ELBOW EVALUATION
+# you can use the code below to see an elbow plot of the clusters
+# ! In our testing we found 5 clusters to be ideal.
+#
+# inertia = eval_k(...)
+#sns.lineplot(y = inertia, x = range(1, KMAX+1))
+#
 # %%
 
+def train_model(patient_data=patient_data, k = 5):
+    return(KMeans(n_clusters = k, n_jobs=-1).fit)
 # %%
+def export_model():
+    d = datetime.today().strftime("%Y_%m_%d_%H:%M:%S")
+    pk.dump(train_model(), open("models/kmeans"+d, 'wb'))
+    print("Model Exported ")
+
+export_model()
