@@ -46,7 +46,7 @@ def eval_k(data, kmax = KMAX):
     inertia = []
 
     for k in range(1,kmax+1):
-        kmeans = KMeans(n_clusters = k, n_jobs=-1).fit(data)
+        kmeans = KMeans(n_clusters = k).fit(data)
         inertia.append(kmeans.inertia_)
 
     return(inertia)
@@ -61,11 +61,12 @@ def eval_k(data, kmax = KMAX):
 # %%
 
 def train_model(patient_data=patient_data, k = 5):
-    return(KMeans(n_clusters = k, n_jobs=-1).fit)
+    return(KMeans(n_clusters = k, n_jobs=-1, algorithm = "elkan", n_init = 20).fit(patient_data))
 # %%
 def export_model():
     d = datetime.today().strftime("%Y_%m_%d_%H:%M:%S")
-    pk.dump(train_model(), open("models/kmeans"+d, 'wb'))
+    model = train_model()
+    pk.dump(model, open("models/kmeans"+d+".sav", 'wb'))
     print("Model Exported ")
 
 export_model()
