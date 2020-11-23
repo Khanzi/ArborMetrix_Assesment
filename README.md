@@ -27,6 +27,23 @@ The initial model that is included with this project had a
 sum of squared distances of all samples to their nearest cluter cnetroid of 427.3
 
 
+## Data
+
+* SSN: Patient social security number.
+* encounter_id: Unique identifier representing a visit to a medical provider.
+* line_number: The number of the medical proceduce/diagnosis from a resulting encounter.
+* icd10_code: Unique code representing some sort of medical procedure/diagnoses
+
+## Assumptions:
+
+1. Data is fully anonymized
+   1. Social security numbers are hashed
+   2. ICD10 codes are hashed
+2. Unordered
+   1. There is no indication of time.
+   2. A patient with multiple encounters could have had them in any order.
+   3. No assumptions about line number ordering is made.
+
 # Usage
 
 ### Requirements
@@ -45,7 +62,7 @@ arguements are specified it will attempt to use the `patients.csv` and
 Different datasets can be specified as such
 
 ```
-python training.py <path to patients data> <path to encounters data>
+$ python training.py <path to patients data> <path to encounters data>
 ```
 
 ## Applying Model | `apply_model.py`
@@ -58,26 +75,8 @@ By default the provided datasets are used and the pretrained model is used.
 But specific models and datasets can be specified as such
 
 ```
-python apply_model.py <patients.csv> <encounters.csv> <path to model>
+$ python apply_model.py <patients.csv> <encounters.csv> <path to model>
 ```
-
-## Data
-
-* SSN: Patient social security number.
-* encounter_id: Unique identifier representing a visit to a medical provider.
-* line_number: The number of the medical proceduce/diagnosis from a resulting encounter.
-* icd10_code: Unique code representing some sort of medical procedure/diagnoses
-
-### Notes:
-
-1. Data is fully anonymized
-   1. Social security numbers are hashed
-   2. ICD10 codes are hashed
-2. Unordered
-   1. There is no indication of time.
-   2. A patient with multiple encounters could have had them in any order.
-   3. No assumptions about line number ordering is made.
-
 
 ### Areas of Improvement
 
