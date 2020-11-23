@@ -64,3 +64,5 @@ plt.xlabel("Clusters")
 plt.ylabel("Inertia")
 plt.title("Elbow Evaluation")
 # %%
+kmeans.inertia_ ** 0.5
+# %%

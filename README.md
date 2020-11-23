@@ -1,6 +1,8 @@
 # Clustering Patients Based on Similar Treatment Patterns
-## Kahlil Wehmeyer | ArborMetrix Assesment | Ishan Patel
-
+```
+Kahlil Wehmeyer, November 2020
+Assesment for ArborMetrix
+```
 
 ## Model
 A KMeans model was built using 5 clusters. 
@@ -68,3 +70,11 @@ python apply_model.py <patients.csv> <encounters.csv> <path to model>
    1. There is no indication of time.
    2. A patient with multiple encounters could have had them in any order.
    3. No assumptions about line number ordering is made.
+
+
+### Areas of Improvement
+
+* More robust the CLI argument handling
+  * Improve error handling
+  * Meaningful error messages
+*  
