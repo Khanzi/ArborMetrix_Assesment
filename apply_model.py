@@ -46,7 +46,7 @@ def save_cluster_results():
 
     data = label_clusters()
 
-    print("Cluster Distribution:\n)
+    print("Cluster Distribution:\n")
     print(data['cluster'].astype('category').value_counts(normalize=True)*100)
     print('\n')
 
