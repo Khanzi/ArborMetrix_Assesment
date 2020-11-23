@@ -29,6 +29,16 @@ sum of squared distances of all samples to their nearest cluter cnetroid of 427.
 
 # Usage
 
+### Requirements
+If you wish you can activate the python virtual environments 
+
+`$ source venv/bin/activate`.
+
+Alternatively ensure that you have all the requirements by running
+```
+$ python -m pip install -r requirements.txt
+```
+
 ## Training KMeans | `training.py`
 
 The `training.py` script trains and saves a KMeans model. If **no** command line
