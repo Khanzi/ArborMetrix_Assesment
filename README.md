@@ -1,25 +1,70 @@
-Attached you will find two csvs, that when combined, gives all the "diagnoses" codes experienced in all encounters for a particular patient.  "patient2encounters.csv" (P2E.csv) and "encounter2codes.csv" (E2C.csv).  P2E.csv contains all the encounters, identified by "encounter_id", a particular patient identified by "ssn" has had.  (Encounters are visits to a healthcare office).  E2C.sv contains all the codes (i.e. ICD10 codes for diagnoses, procedure, etc.), identified by "icd10_code", for a particular encounter identified by "encounter_id".  In other words, "encounter_id" is what one would "jon" the two csvs on.  Additional reminder: the values in icd10_code have no connection to reality, so it's not fruitful to look up what a particular icd10 code means.
+# Clustering Patients Based on Similar Treatment Patterns
+## Kahlil Wehmeyer | ArborMetrix Assesment | Ishan Patel
 
 
-The task is to come up with something yielding "insight".  That could be in the form of predictive/prescriptive models, retrospective analysis, etc.  For example, one could try to asnwer questions like:
-1) Procedures the patient should be having that they are not?
-2) Excess care?
-3) Procedure code groupings?
+## Model
+A KMeans model was built using 5 clusters. 
+The number of clusters was chosen based on an elbow graph.
+Where the Y axis represents the mean sum squared distance of all samples
+to their closest cluster. The X axist represents the number of clusters.
 
-There are no correct answers.  Pick a particular problem and try to solve it.
+![](plots/elbow_plot.png)
 
-There are 3 guidelines:
-A) Python is heavily preferred.  Please feel free to use libraries!
-B) Efforts needs to be repeatable, minimize future struggles, and enable further discovery.  It needs to work from the command line.
-C) Whatever solution is devised needs to work during "apply" time.  For example, a ML-based model requires saving after training, and reloading when it's applying.
+This model clusters patients with similar treatment history. If more context
+is given to the patients within clusters then the model could be used to make
+recommendations and assumptions about patients. 
 
-Hence, try to wrap up your solution such that it can effortlessly work on other data resembling the input csvs.  Also, please "zip" or "tar" your solution up such that it can make it past the email filters :)
+Example:
+If patients in cluster $x$ historically ended up being diagnosed with some
+sort of auto-immune disease ($\lambda$) then if a new patient is falls into
+cluster $x$ they could be recommended to be tested preemptively for that disease
+$\lambda$.
 
 
-# Kahlil Wehmeyer
+The initial model that is included with this project had a 
+sum of squared distances of all samples to their nearest cluter cnetroid of 427.3
 
-### Ideas
-K-means clustering answers question 2
-K-modes could be used to answer question 1 and 3.
 
-Let's start with a simple K-means using # of visits and # of icd10_codes
+# Usage
+
+## Training KMeans | `training.py`
+
+The `training.py` script trains and saves a KMeans model. If **no** command line
+arguements are specified it will attempt to use the `patients.csv` and 
+`encounters.csv` files found in the  `data/` directory.
+
+Different datasets can be specified as such
+
+```
+python training.py <path to patients data> <path to encounters data>
+```
+
+## Applying Model | `apply_model.py`
+
+`apply_model.py` inputs datasets in the same format as those that were used to train
+the initial models and returns the cluster predictions for all the patients.
+The results are then written to a `.csv` file.
+
+By default the provided datasets are used and the pretrained model is used.
+But specific models and datasets can be specified as such
+
+```
+python apply_model.py <patients.csv> <encounters.csv> <path to model>
+```
+
+## Data
+
+* SSN: Patient social security number.
+* encounter_id: Unique identifier representing a visit to a medical provider.
+* line_number: The number of the medical proceduce/diagnosis from a resulting encounter.
+* icd10_code: Unique code representing some sort of medical procedure/diagnoses
+
+### Notes:
+
+1. Data is fully anonymized
+   1. Social security numbers are hashed
+   2. ICD10 codes are hashed
+2. Unordered
+   1. There is no indication of time.
+   2. A patient with multiple encounters could have had them in any order.
+   3. No assumptions about line number ordering is made.

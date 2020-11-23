@@ -61,12 +61,14 @@ def eval_k(data, kmax = KMAX):
 # %%
 
 def train_model(patient_data=patient_data, k = 5):
+
     return(KMeans(n_clusters = k, n_jobs=-1, algorithm = "elkan", n_init = 20).fit(patient_data))
 # %%
 def export_model():
+
     d = datetime.today().strftime("%Y_%m_%d_%H:%M:%S")
     model = train_model()
     pk.dump(model, open("models/kmeans"+d+".sav", 'wb'))
-    print("Model Exported ")
+    print("Model Exported\nSum of Distances of Samples to Nearest Cluster(s):", (model.inertia_**.5))
 
 export_model()

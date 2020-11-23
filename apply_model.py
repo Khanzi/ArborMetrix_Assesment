@@ -24,17 +24,21 @@ else:
     """)
     sys.exit("Path Error")
 
+
 patient_data = dp.prepare_data(patients_path, encounters_path)
 model = pk.load(open(model_path, 'rb'))
 
 # %%
 def label_clusters(patient_data = patient_data, model = model):
+
     patient_data['cluster'] = model.predict(patient_data)
     patient_data.reset_index(inplace=True)
-    return(patient_data)
+
+    return(patient_data[['ssn','cluster']])
 
 # %%
 def save_cluster_results():
+
     d = datetime.today().strftime("%Y_%m_%d_%H:%M:%S")
     data = label_clusters()
     data.to_csv("clustered_patients"+d+".csv", index=False)
