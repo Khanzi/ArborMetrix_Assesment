@@ -52,7 +52,7 @@ def save_cluster_results():
     print(cluster_dist.to_string(index=False))
     print('\n')
 
-    #data.to_csv(filename, index=False)
+    data.to_csv(filename, index=False)
     print("Results saved to", filename, '\n' )
 
 save_cluster_results()
