@@ -84,4 +84,4 @@ python apply_model.py <patients.csv> <encounters.csv> <path to model>
 * More robust the CLI argument handling
   * Improve error handling
   * Meaningful error messages
-*  
+  
