@@ -67,8 +67,12 @@ def train_model(patient_data=patient_data, k = 5):
 def export_model():
 
     d = datetime.today().strftime("%Y_%m_%d_%H:%M:%S")
+    filename= "models/kmeans"+d+".sav"
+
     model = train_model()
-    pk.dump(model, open("models/kmeans"+d+".sav", 'wb'))
-    print("Model Exported\nSum of Distances of Samples to Nearest Cluster(s):", (model.inertia_**.5))
+    pk.dump(model, open(filename, 'wb'))
+
+    print("\n")
+    print("Model Exported to", filename, "\nSum of Distances of Samples to Nearest Cluster(s):", (model.inertia_**.5))
 
 export_model()
