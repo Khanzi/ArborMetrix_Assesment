@@ -23,7 +23,7 @@ def prepare_data(p, e):
     pe = pe.drop("line_number", axis=1)
 
     # Aggregating by patient
-    pt = pe.groupby(['ssn']).sum()
+    pt = pe.groupby(['id']).sum()
 
     return(pt)
 

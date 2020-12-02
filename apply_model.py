@@ -36,7 +36,7 @@ def label_clusters(patient_data = patient_data, model = model):
     patient_data['cluster'] = model.predict(patient_data)
     patient_data.reset_index(inplace=True)
 
-    return(patient_data[['ssn','cluster']])
+    return(patient_data[['id','cluster']])
 
 # %%
 def save_cluster_results():
