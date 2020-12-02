@@ -4,6 +4,11 @@ Kahlil Wehmeyer, November 2020
 Assesment for ArborMetrix
 ```
 
+# About
+This was an assesment for a Data Science position at [ArborMetrix](https://www.arbormetrix.com/).
+
+Note that all the data is synthetically generated and has no meaning inn reality.
+
 ## Model
 A KMeans model was built using 5 clusters. 
 The number of clusters was chosen based on an elbow graph.
