@@ -36,7 +36,7 @@ sum of squared distances of all samples to their nearest cluter cnetroid of 427.
 
 ## Data
 
-* SSN: Patient social security number.
+* ID: Patient ID number.
 * encounter_id: Unique identifier representing a visit to a medical provider.
 * line_number: The number of the medical proceduce/diagnosis from a resulting encounter.
 * icd10_code: Unique code representing some sort of medical procedure/diagnoses
@@ -44,7 +44,7 @@ sum of squared distances of all samples to their nearest cluter cnetroid of 427.
 ## Assumptions:
 
 1. Data is fully anonymized
-   1. Social security numbers are hashed
+   1. ID's for patients have no intrinsic meaning.
    2. ICD10 codes are hashed
 2. Unordered
    1. There is no indication of time.
